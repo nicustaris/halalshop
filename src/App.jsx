@@ -1,19 +1,19 @@
-import React from "react";
-
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./Navbar/Navbar";
-import LatestOffers from "./layouts/LatestOffers/LatestOffers";
-import CustomerFavorites from "./layouts/CustomerFavorites/CustomerFavorites";
-
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import ResetPassword from "./pages/ResetPassword";
 const App = () => {
   return (
-    <div className="app">
-      <Navbar />
-      <main>
-        <LatestOffers />
-        <CustomerFavorites />
-      </main>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+      <Route path="/SignIn" element={<SignIn />}></Route>
+      <Route path="/SignUp" element={<SignUp />}></Route>
+      <Route path="/Profile" element={<Profile />}></Route>
+      <Route path="/ResetPassword" element={<ResetPassword />}></Route>
+    </Routes>
   );
 };
 
