@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Navbar from "../Navbar/Navbar";
-import Password from "../components/profile/Password";
-import Address from "../components/profile/Address";
-import Telephone from "../components/profile/Telephone";
+import { Navbar } from "../Navbar/Navbar";
+import { Password } from "../components/profile/Password";
+import { Address } from "../components/profile/Address";
+import { Telephone } from "../components/profile/Telephone";
 import classes from "./Profile.module.css";
-import DeleteAccount from "../components/profile/DeleteAccount";
+import { DeleteAccount } from "../components/profile/DeleteAccount";
 
-export default function Profile() {
+function Profile() {
   const [email, setEmail] = useState(true);
   const [address, setAddress] = useState(false);
   const [telephone, setTelephone] = useState(false);
@@ -44,10 +44,18 @@ export default function Profile() {
       <Navbar />
       <div className={classes.page}>
         <ul className={classes.container}>
-          <li onClick={changeEmail}>Password</li>
-          <li onClick={changeAddress}>Address</li>
-          <li onClick={changeTelephone}>Telephone</li>
-          <li onClick={deleteAccount}>Delete Account?</li>
+          <li onClick={changeEmail} className={classes.li}>
+            Password
+          </li>
+          <li onClick={changeAddress} className={classes.li}>
+            Address
+          </li>
+          <li onClick={changeTelephone} className={classes.li}>
+            Telephone
+          </li>
+          <li onClick={deleteAccount} className={classes.li}>
+            Delete Account?
+          </li>
         </ul>
         <div className={classes.content}>
           {email && <Password />}
@@ -59,3 +67,5 @@ export default function Profile() {
     </>
   );
 }
+
+export { Profile };

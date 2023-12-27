@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./CustomerFavorites.css";
 
 import steak from "../../assets/steak.png";
@@ -70,4 +68,4 @@ const CustomerFavorites = () => {
   );
 };
 
-export default CustomerFavorites;
+export { CustomerFavorites };

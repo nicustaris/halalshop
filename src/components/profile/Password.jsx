@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut, sendPasswordResetEmail } from "firebase/auth";
 import classes from "./Password.module.css";
 
-export default function Password() {
+function Password() {
   const [email, setEmail] = useState("");
   const [alert, setAlert] = useState("");
 
@@ -14,10 +14,10 @@ export default function Password() {
 
   let cookies = new Cookie();
   useEffect(() => {
-    let userEmail = auth.currentUser.email;
+    let userEmail = cookies.get("email");
 
     setEmail(userEmail);
-  }, []);
+  }, [cookies]);
 
   async function updatePassword() {
     await sendPasswordResetEmail(auth, email)
@@ -52,10 +52,14 @@ export default function Password() {
         Reset Password?
         <br />
         <br />
-        <button onClick={updatePassword}>Proceed</button>
+        <button onClick={updatePassword} className={classes.button}>
+          Proceed
+        </button>
       </div>
 
       {alert}
     </div>
   );
 }
+
+export { Password };

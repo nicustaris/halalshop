@@ -1,4 +1,4 @@
-import { auth, store } from "../../firebase";
+import { store } from "../../firebase";
 import { useEffect, useState, useRef } from "react";
 import {
   collection,
@@ -9,33 +9,35 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import AddressCard from "./AddressCard";
+import { AddressCard } from "./AddressCard";
 import classes from "./Address.module.css";
-import Loading from "./Loading";
+import { useNavigate, useLocation } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-export default function Address() {
-  const user = auth.currentUser;
+function Address() {
+  const cookies = new Cookies();
+  const user = cookies.get("email");
   const [addresses, setAddresses] = useState([]);
   const [alert, setAlert] = useState("");
-  const [loading, setLoading] = useState(true);
 
   const addressline1 = useRef();
   const addressline2 = useRef();
   const city = useRef();
   const county = useRef();
   const postalcode = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     getDocs(
-      query(collection(store, "usersdetails"), where("email", "==", user.email))
+      query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
       setAddresses(result[0].addresses);
       console.log(result[0].addresses);
-      setLoading(false);
     });
-  }, [user.email, addresses.length]);
+  }, []);
 
   async function addAddress() {
     const dataobject = {
@@ -46,7 +48,7 @@ export default function Address() {
       postalcode: postalcode.current.value,
     };
     await getDocs(
-      query(collection(store, "usersdetails"), where("email", "==", user.email))
+      query(collection(store, "usersdetails"), where("email", "==", user))
     ).then(async (data) => {
       const result = data.docs.map((docc) => ({
         ...docc.data(),
@@ -57,7 +59,8 @@ export default function Address() {
         .then(() => {
           setAlert("address added.");
           setTimeout(() => {
-            window.location.reload(), 1000;
+            navigate(location.state.previousUrl) || window.location.reload(),
+              1000;
           });
         })
         .catch((error) => {
@@ -73,22 +76,19 @@ export default function Address() {
       <br />
       <p>You have {addresses.length} address setted</p>
       <br />
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className={classes.address}>
-          {addresses.map((address) => (
-            <AddressCard
-              key={address}
-              addressline1={address.addressline1}
-              addressline2={address.addressline2}
-              county={address.county}
-              city={address.city}
-              code={address.postalcode}
-            />
-          ))}
-        </div>
-      )}
+
+      <div className={classes.address}>
+        {addresses.map((address) => (
+          <AddressCard
+            key={address}
+            addressline1={address.addressline1}
+            addressline2={address.addressline2}
+            county={address.county}
+            city={address.city}
+            code={address.postalcode}
+          />
+        ))}
+      </div>
 
       <br />
       <h3>Add a New Address</h3>
@@ -127,3 +127,5 @@ export default function Address() {
     </div>
   );
 }
+
+export { Address };

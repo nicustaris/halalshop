@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="align_center navbar_links">
         <Link to="/">Home</Link>
         <Link to="/Products">Products</Link>
-        <Link to="/SpecialOffers">Special Offers</Link>
+        <Link to="/Promotions">Special Offers</Link>
         <Link to="/About Us">About Us</Link>
         <Link to="/Cart">Cart</Link>
         {loggedIn ? (
@@ -75,4 +75,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export { Navbar };

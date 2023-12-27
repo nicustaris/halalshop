@@ -1,4 +1,4 @@
-import { auth, store } from "../../firebase";
+import { store } from "../../firebase";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -10,44 +10,43 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import Cookies from "universal-cookie";
 import classes from "./Telephone.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Telephone() {
+function Telephone() {
   const telephoneInput = useRef();
   const [telephone, setTelephone] = useState("");
   const [notPresent, setNotPresent] = useState(false);
   const [present, setPresent] = useState(false);
   const [alert, setAlert] = useState("");
-
-  const user = auth.currentUser;
+  const cookies = new Cookies();
+  const user = cookies.get("email");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getDocs(
-      query(collection(store, "usersdetails"), where("email", "==", user.email))
+      query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
-      console.log(result[0].id);
       console.log(result[0].telephone);
       setTelephone(result[0].telephone);
     });
 
-    if (telephone !== "") {
+    if (!telephone) {
       setNotPresent(false);
       setPresent(true);
     } else {
       setNotPresent(true);
       setPresent(false);
     }
-  }, [telephone, user.telephone, user.email]);
+  }, []);
 
   async function addTelNumber() {
     if (telephoneInput.current.value.match("[0-9]{11}")) {
       await getDocs(
-        query(
-          collection(store, "usersdetails"),
-          where("email", "==", user.email)
-        )
+        query(collection(store, "usersdetails"), where("email", "==", user))
       ).then(async (data) => {
         const result = data.docs.map((docc) => ({
           ...docc.data(),
@@ -58,10 +57,9 @@ export default function Telephone() {
         await updateDoc(telRef, { telephone: telephoneInput.current.value });
         setAlert("Phone Number Successfully Added");
         setTimeout(() => {
-          window.location.reload();
+          navigate(location.state.previousUrl) || window.location.reload();
         }, 1500);
       });
-      console.log("document updated");
     } else {
       setAlert("Please provide valid phone number");
     }
@@ -69,10 +67,7 @@ export default function Telephone() {
   async function changeTelNumber() {
     if (telephoneInput.current.value.match("[0-9]{11}")) {
       await getDocs(
-        query(
-          collection(store, "usersdetails"),
-          where("email", "==", user.email)
-        )
+        query(collection(store, "usersdetails"), where("email", "==", user))
       ).then(async (data) => {
         const result = data.docs.map((docc) => ({
           ...docc.data(),
@@ -83,10 +78,9 @@ export default function Telephone() {
         await updateDoc(telRef, { telephone: telephoneInput.current.value });
         setAlert("Phone Number Changed Successfully");
         setTimeout(() => {
-          window.location.reload();
+          navigate(location.state.previousUrl) || window.location.reload();
         }, 1500);
       });
-      console.log("document updated");
     } else {
       setAlert("Please provide valid phone number");
     }
@@ -134,3 +128,5 @@ export default function Telephone() {
     </div>
   );
 }
+
+export { Telephone };

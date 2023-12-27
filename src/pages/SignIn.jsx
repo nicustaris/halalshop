@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar";
+import { Navbar } from "../Navbar/Navbar";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SignIn.module.css";
@@ -7,21 +7,21 @@ import Cookies from "universal-cookie";
 import { collection, addDoc, getDocs, where, query } from "firebase/firestore";
 import { auth, store } from "../firebase";
 import {
-  FacebookAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useLocation } from "react-router-dom";
 
-export default function SignIn() {
+function SignIn() {
   const [modal, setModal] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const cookies = new Cookies();
+  const location = useLocation();
 
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
-  const providerFacebook = new FacebookAuthProvider();
 
   function loginHandler(event) {
     event.preventDefault();
@@ -55,9 +55,11 @@ export default function SignIn() {
           sameSite: "none",
         });
 
-        navigate("/");
-
-        console.log(data.providerId);
+        if (location.state === null) {
+          navigate("/");
+        } else {
+          navigate(location.state.previousUrl);
+        }
       })
       .catch((error) => {
         switch (error.code) {
@@ -129,39 +131,12 @@ export default function SignIn() {
         }
       });
 
-      console.log(result.providerId);
-      navigate("/");
-    });
-  };
-
-  const handleFacebook = () => {
-    signInWithPopup(auth, providerFacebook)
-      .then((result) => {
-        cookies.set("firstname", result.user.displayName.split(" ")[0], {
-          path: "/",
-          maxAge: 3600,
-          secure: true,
-          sameSite: "none",
-        });
-        cookies.set("lastname", result.user.displayName.split(" ")[1], {
-          path: "/",
-          maxAge: 3600,
-          secure: true,
-          sameSite: "none",
-        });
-        cookies.set("email", result.user.email, {
-          path: "/",
-          maxAge: 3600,
-          secure: true,
-          sameSite: "none",
-        });
-
-        console.log(result);
+      if (location.state === null) {
         navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } else {
+        navigate(location.state.previousUrl);
+      }
+    });
   };
 
   function resetPassword() {
@@ -205,10 +180,9 @@ export default function SignIn() {
         <p>{modal}</p>
         OR
         <GoogleButton onClick={handleGoogle} />
-        <button className={classes.facebook} onClick={handleFacebook}>
-          Sign in with Facebook
-        </button>
       </div>
     </>
   );
 }
+
+export { SignIn };

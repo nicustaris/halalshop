@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 0 0 10px;
+}
+
+.button {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #76b947;
+  border-radius: 5px;
+}
+.buttoncontainer {
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  width: min-content;
+}
+.proddetails {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 250px;
+}
+
+.p {
+  font-size: 15px;
+}
+
+.price {
+  display: flex;
+}
+.img {
+  transition: all 0.2s ease-in-out;
+}
+
+.img:hover {
+  transform: scale(1.05);
+}

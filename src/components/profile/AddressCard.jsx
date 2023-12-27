@@ -10,12 +10,14 @@ import {
   collection,
   where,
 } from "firebase/firestore";
-import { store, auth } from "../../firebase";
+import { store } from "../../firebase";
+import Cookies from "universal-cookie";
 import classes from "./AddressCard.module.css";
 
-export default function AddressCard(props) {
+function AddressCard(props) {
   const [deletemodal, setDeleteModal] = useState(false);
-  const user = auth.currentUser;
+  const cookies = new Cookies();
+  const user = cookies.get("email");
   function openDeleteModal() {
     setDeleteModal(true);
   }
@@ -31,19 +33,18 @@ export default function AddressCard(props) {
       county: addresstoDelete.county,
       postalcode: addresstoDelete.code,
     };
-    console.log(deleteAddress);
+
     getDocs(
-      query(collection(store, "usersdetails"), where("email", "==", user.email))
+      query(collection(store, "usersdetails"), where("email", "==", user))
     ).then(async (data) => {
       const result = data.docs.map((docc) => ({
         ...docc.data(),
         id: docc.id,
       }));
-      console.log(result[0].id);
+
       const addressRef = doc(store, "usersdetails", result[0].id);
       await updateDoc(addressRef, { addresses: arrayRemove(deleteAddress) })
         .then(() => {
-          console.log("address deleted.");
           window.location.reload();
         })
         .catch((error) => {
@@ -79,3 +80,4 @@ export default function AddressCard(props) {
     </div>
   );
 }
+export { AddressCard };

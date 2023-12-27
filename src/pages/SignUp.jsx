@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar";
+import { Navbar } from "../Navbar/Navbar";
 import classes from "./SignUp.module.css";
 import { useRef } from "react";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 
-export default function SignIn() {
+function SignUp() {
   const [emailError, setEmailError] = useState("");
 
   const nameInputRef = useRef();
@@ -97,3 +97,5 @@ export default function SignIn() {
     </div>
   );
 }
+
+export { SignUp };

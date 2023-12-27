@@ -18,12 +18,12 @@
   border-radius: 5px;
 }
 
-li {
+.li {
   font-size: 25px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-li:hover {
+.li:hover {
   color: #76b947;
   transform: scale(1.1);
 }

@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import { auth } from "../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-export default function ResetPassword() {
+
+function ResetPassword() {
   let emailInputRef = useRef();
   const [alert, setAlert] = useState("");
   const navigate = useNavigate();
@@ -37,3 +38,5 @@ export default function ResetPassword() {
     </>
   );
 }
+
+export { ResetPassword };

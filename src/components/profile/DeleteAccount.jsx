@@ -13,7 +13,7 @@ import Cookies from "universal-cookie";
 import { deleteUser } from "firebase/auth";
 import classes from "./DeleteAccount.module.css";
 
-export default function DeleteAccount() {
+function DeleteAccount() {
   const navigate = useNavigate();
   const [alert, setAlert] = useState("");
   const user = auth.currentUser;
@@ -66,3 +66,4 @@ export default function DeleteAccount() {
     </div>
   );
 }
+export { DeleteAccount };
