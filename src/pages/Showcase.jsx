@@ -2,7 +2,7 @@ import { Navbar } from "../Navbar/Navbar";
 import classes from "./Showcase.module.css";
 import { useEffect, useState } from "react";
 import { store, auth } from "../firebase.js";
-
+import Cookies from "universal-cookie";
 import { collection, getDocs } from "firebase/firestore";
 import { PostItem } from "../components/showcase/PostItem.jsx";
 import { AddPost } from "../components/showcase/AddPost.jsx";
@@ -13,6 +13,7 @@ function Showcase() {
   const [showAddPost, setShowAddPost] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const cookies = new Cookies();
 
   useEffect(() => {
     getDocs(collection(store, "usersshowcase")).then((data) => {
@@ -22,7 +23,7 @@ function Showcase() {
       }));
 
       setPosts(resultdata);
-      setUser(auth.currentUser);
+      setUser(cookies.get("email"));
     });
   }, []);
 
@@ -54,6 +55,7 @@ function Showcase() {
             title={post.title}
             description={post.description}
             imageURL={post.imageURL}
+            email={post.email}
           />
         ))}
       </div>

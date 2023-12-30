@@ -26,7 +26,13 @@ function Gettel({ passPhone }) {
   return (
     <div>
       <h1>Telephone Number</h1>
-      <h3>{telephone} Is this telephone number correct?</h3>
+      {telephone ? (
+        <h3>{telephone} Is this telephone number correct?</h3>
+      ) : (
+        <h3>
+          You have no phone set.<button onClick={handlePhone}>Set Phone</button>
+        </h3>
+      )}
       <button
         onClick={() => {
           passPhone(telephone);

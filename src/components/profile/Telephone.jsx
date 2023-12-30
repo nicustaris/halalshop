@@ -20,9 +20,11 @@ function Telephone() {
   const [notPresent, setNotPresent] = useState(false);
   const [present, setPresent] = useState(false);
   const [alert, setAlert] = useState("");
+  const location = useLocation();
+
   const cookies = new Cookies();
   const user = cookies.get("email");
-  const location = useLocation();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,9 +58,12 @@ function Telephone() {
         const telRef = doc(store, "usersdetails", result[0].id);
         await updateDoc(telRef, { telephone: telephoneInput.current.value });
         setAlert("Phone Number Successfully Added");
-        setTimeout(() => {
-          navigate(location.state.previousUrl) || window.location.reload();
-        }, 1500);
+
+        if (location.state === null) {
+          window.location.reload();
+        } else {
+          navigate(location.state.previousUrl);
+        }
       });
     } else {
       setAlert("Please provide valid phone number");
@@ -77,9 +82,12 @@ function Telephone() {
         const telRef = doc(store, "usersdetails", result[0].id);
         await updateDoc(telRef, { telephone: telephoneInput.current.value });
         setAlert("Phone Number Changed Successfully");
-        setTimeout(() => {
-          navigate(location.state.previousUrl) || window.location.reload();
-        }, 1500);
+
+        if (location.state === null) {
+          window.location.reload();
+        } else {
+          navigate(location.state.previousUrl);
+        }
       });
     } else {
       setAlert("Please provide valid phone number");

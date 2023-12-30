@@ -33,19 +33,23 @@ function GetAddr({ passAddress }) {
   return (
     <div>
       <h3>Please choose a delivery Address</h3>
-      <div>
-        {address.map((address) => (
-          <GetAddressCard
-            key={address.index}
-            addressline1={address.addressline1}
-            addressline2={address.addressline2}
-            county={address.county}
-            city={address.city}
-            code={address.postalcode}
-            getAddress={getAddress}
-          />
-        ))}
-      </div>
+      {address.length > 0 ? (
+        <div>
+          {address.map((address) => (
+            <GetAddressCard
+              key={address.index}
+              addressline1={address.addressline1}
+              addressline2={address.addressline2}
+              county={address.county}
+              city={address.city}
+              code={address.postalcode}
+              getAddress={getAddress}
+            />
+          ))}
+        </div>
+      ) : (
+        <h3>You have no Delivery Address set</h3>
+      )}
       <h3>Set another address?</h3>
       <button onClick={addressRedirect}>Proceed</button>
     </div>

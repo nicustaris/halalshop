@@ -1,20 +1,25 @@
 /* eslint-disable react/prop-types */
 
 import { useState, useEffect } from "react";
-import { auth } from "../../firebase";
+
 import { DeleteModal } from "./DeleteModal";
 import classes from "./PostItem.module.css";
+import Cookies from "universal-cookie";
 
 function PostItem(props) {
-  const [deleteButton, setDeleteButton] = useState(false);
+  const [deleteButton, setDeleteButton] = useState(true);
   const [deleteModal, setDeleteModal] = useState(false);
-  const user = auth.currentUser;
+
+  const cookies = new Cookies();
+  const user = cookies.get("email");
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== props.email) {
+      setDeleteButton(false);
+    } else {
       setDeleteButton(true);
     }
-  }, [user]);
+  }, []);
 
   function showDeleteModal() {
     setDeleteModal(true);
