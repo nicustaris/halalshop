@@ -1,7 +1,7 @@
 import { Navbar } from "../Navbar/Navbar";
 import classes from "./Showcase.module.css";
 import { useEffect, useState } from "react";
-import { store, auth } from "../firebase.js";
+import { store } from "../firebase.js";
 import Cookies from "universal-cookie";
 import { collection, getDocs } from "firebase/firestore";
 import { PostItem } from "../components/showcase/PostItem.jsx";

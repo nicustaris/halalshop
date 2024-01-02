@@ -11,6 +11,9 @@ function Gettel({ passPhone }) {
   const user = cookies.get("email");
   const navigate = useNavigate();
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Navbar.css";
@@ -5,11 +7,14 @@ import logo from "../assets/logo.png";
 import Cookie from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, store } from "../firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 const Navbar = () => {
   const cookies = new Cookie();
   const [loggedIn, setLoggedIn] = useState(true);
+  const [value, setValue] = useState("");
+  const [displayResult, setDisplayResult] = useState([]);
   const email = cookies.get("email");
   const navigate = useNavigate();
 
@@ -35,21 +40,49 @@ const Navbar = () => {
     navigate("/");
     window.location.reload(true);
   }
+  async function onChange(e) {
+    setValue(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
+    await getDocs(collection(store, "products")).then((data) => {
+      const resultdata = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      if (value === "") {
+        setDisplayResult(resultdata);
+      } else {
+        setDisplayResult([]);
+      }
+    });
+  }
 
   return (
     <nav className="navbar">
       <div className="align_center">
         <img src={logo} alt="logo" />
-        <form className="align_center navbar_form">
+        <div className="align_center navbar_form">
           <input
             type="text"
             placeholder="Search Products"
             className="navbar_search"
+            onChange={onChange}
+            value={value}
           />
-          <button type="submit" className="search_button">
-            Search
-          </button>
-        </form>
+          <Link to="/ProductList" state={{ productName: value }}>
+            <button type="submit" className="search_button">
+              Search
+            </button>
+          </Link>
+          <div className="dropdown-content">
+            {displayResult
+              .filter((elm) => elm.name.startsWith(value))
+              .map((el) => (
+                <div key={el.id} onClick={() => setValue(el.name)}>
+                  {el.name}
+                  <hr />
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
       <div className="align_center navbar_links">
         <Link to="/">Home</Link>

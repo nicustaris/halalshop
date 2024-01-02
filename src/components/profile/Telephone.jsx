@@ -28,6 +28,9 @@ function Telephone() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {

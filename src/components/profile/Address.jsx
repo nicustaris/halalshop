@@ -29,6 +29,9 @@ function Address() {
   const location = useLocation();
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {

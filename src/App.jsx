@@ -11,6 +11,8 @@ import { ProductList } from "./pages/ProductList";
 import { ProductsCart } from "./pages/ProductsCart";
 import { Checkout } from "./pages/Checkout";
 import { Promotions } from "./pages/Promotions";
+import { Succes } from "./pages/Succes";
+import { Failure } from "./pages/Failure";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
       <Route path="/ProductList" element={<ProductList />}></Route>
       <Route path="/Cart" element={<ProductsCart />}></Route>
       <Route path="/Checkout" element={<Checkout />}></Route>
+      <Route path="/Failure" element={<Failure />}></Route>
+      <Route path="/Succes" element={<Succes />}></Route>
       <Route path="/Promotions" element={<Promotions />}></Route>
     </Routes>
   );

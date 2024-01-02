@@ -15,6 +15,9 @@ function Password() {
   let cookies = new Cookie();
   useEffect(() => {
     let userEmail = cookies.get("email");
+    if (!userEmail) {
+      navigate("/");
+    }
 
     setEmail(userEmail);
   }, [cookies]);
