@@ -13,8 +13,6 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [displayProducts, setDisplayProducts] = useState([]);
   const location = useLocation();
-  const [product, setProduct] = useState("");
-  const [category, setCategory] = useState("");
 
   useEffect(() => {
     if (!location.state.category) {
