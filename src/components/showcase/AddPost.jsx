@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 
 import { useRef, useState } from "react";
-import { storage, store, auth } from "../../firebase.js";
+import { storage, store } from "../../firebase.js";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import classes from "./AddPost.module.css";
+import Cookies from "universal-cookie";
 
 function AddPost(props) {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const [picture, setPicture] = useState(null);
+  const cookies = new Cookies();
 
   async function addShowcase(e) {
     e.preventDefault();
@@ -24,7 +26,7 @@ function AddPost(props) {
     uploadBytesResumable(fileRef, file).then(() => {
       getDownloadURL(fileRef).then((val) => {
         console.log(val);
-        const user = auth.currentUser;
+        const user = cookies.get("email");
         addDoc(collection(store, "usersshowcase"), {
           email: user.email,
           name: user.displayName,

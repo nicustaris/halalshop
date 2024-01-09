@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { store } from "../firebase";
-import { getDocs, collection, where, query, getDoc } from "firebase/firestore";
+import { getDocs, collection, where, query } from "firebase/firestore";
 import { ProductCard } from "../components/product/ProductCard";
 import { Navbar } from "../Navbar/Navbar";
 import classes from "./ProductList.module.css";
