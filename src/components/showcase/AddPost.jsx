@@ -26,10 +26,12 @@ function AddPost(props) {
     uploadBytesResumable(fileRef, file).then(() => {
       getDownloadURL(fileRef).then((val) => {
         console.log(val);
-        const user = cookies.get("email");
+      const user = cookies.get("email");
+        const userDisplayName =
+          cookies.get("firstname") + " " + cookies.get("lastname");
         addDoc(collection(store, "usersshowcase"), {
-          email: user.email,
-          name: user.displayName,
+          email: user,
+          name: userDisplayName,
           title: titleRef.current.value,
           description: descriptionRef.current.value,
           imageURL: val,
