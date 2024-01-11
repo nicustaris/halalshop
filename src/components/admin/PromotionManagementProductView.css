@@ -1,0 +1,26 @@
+.container {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.promotions-view-edit {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.product-price-view {
+    font-size: 16px;
+}

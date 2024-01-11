@@ -7,6 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { PostItem } from "../components/showcase/PostItem.jsx";
 import { AddPost } from "../components/showcase/AddPost.jsx";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Showcase() {
   const [posts, setPosts] = useState([]);
@@ -25,11 +26,12 @@ function Showcase() {
       setPosts(resultdata);
       setUser(cookies.get("email"));
     });
+    console.log(1);
   }, []);
 
   function showAddForm() {
     if (!user) {
-      alert("You must be logged in to be able to post");
+      toast.error("You must be logged in to be able to post!");
       navigate("/SignIn");
     } else {
       setShowAddPost(true);

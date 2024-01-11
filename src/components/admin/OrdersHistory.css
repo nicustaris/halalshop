@@ -1,0 +1,25 @@
+.orders-history {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.order-container {
+    width: 100%;
+}
+
+.order h3 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-details ul {
+    margin-top: 10px;
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}

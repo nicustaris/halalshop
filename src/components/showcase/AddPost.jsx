@@ -5,11 +5,13 @@ import { storage, store, auth } from "../../firebase.js";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import classes from "./AddPost.module.css";
+import { useNavigate } from "react-router-dom";
 
 function AddPost(props) {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const [picture, setPicture] = useState(null);
+  const navigate = useNavigate();
 
   async function addShowcase(e) {
     e.preventDefault();
@@ -32,17 +34,15 @@ function AddPost(props) {
           description: descriptionRef.current.value,
           imageURL: val,
         });
-        window.location.reload();
+        window.reload();
       });
     });
   };
 
   return (
     <div className={classes.container}>
-      <br />
-
       <form className={classes.form} onSubmit={addShowcase}>
-        <h2>Add new Post</h2>
+        <h2 style={{ color: "#fff", marginTop: "5px" }}>Add new Post</h2>
         <div>
           <label htmlFor="title">Title: </label>
           <br />
@@ -58,7 +58,8 @@ function AddPost(props) {
             cols="60"
             className={classes.textarea}
             ref={descriptionRef}
-            required></textarea>
+            required
+          ></textarea>
         </div>
         <br />
         <div className={classes.fileinput}>

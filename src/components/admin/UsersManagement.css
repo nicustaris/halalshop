@@ -1,0 +1,42 @@
+.users_container-grid {
+    display: grid;
+    width: 75%;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.users_container-grid>span {
+    padding: 8px 4px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+.users_container-grid span:not(.addressess):nth-child(-n+7) {
+    background-color: #f0f4f2;
+    font-weight: 500;
+}
+
+.users_container-grid .addressess {
+    display: flex;
+    padding-bottom: 10px;
+    text-align: left !important;
+}
+
+
+.container_title {
+    margin-bottom: 15px;
+}
+
+.container .input_search {
+    margin: 10px 0 25px;
+    outline: none;
+    padding: 3px;
+    border: 1px solid #ddd;
+    display: flex;
+}

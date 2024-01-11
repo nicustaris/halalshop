@@ -36,13 +36,12 @@ function Address() {
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
       setAddresses(result[0].addresses);
-      console.log(result[0].addresses);
     });
   }, []);
 
-  async function addAddress() {
+  async function addAddress(e) {
+    e.preventDefault();
     const dataobject = {
       addressline1: addressline1.current.value,
       addressline2: addressline2.current.value,
@@ -50,6 +49,9 @@ function Address() {
       county: county.current.value,
       postalcode: postalcode.current.value,
     };
+
+    console.log(dataobject);
+
     await getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then(async (data) => {
@@ -57,12 +59,15 @@ function Address() {
         ...docc.data(),
         id: docc.id,
       }));
+
       const addressRef = doc(store, "usersdetails", result[0].id);
+
       await updateDoc(addressRef, { addresses: arrayUnion(dataobject) })
         .then(() => {
           setAlert("address added.");
           setTimeout(() => {
-            navigate(location.state.previousUrl) || window.location.reload(),
+            navigate(window.location.reload()),
+              navigate(location.state?.previousUrl) || window.location.reload(),
               1000;
           });
         })
@@ -77,20 +82,21 @@ function Address() {
       <br />
       <h1>Address</h1>
       <br />
-      <p>You have {addresses.length} address setted</p>
+      <p>You have {addresses?.length} address setted</p>
       <br />
 
       <div className={classes.address}>
-        {addresses.map((address) => (
-          <AddressCard
-            key={address}
-            addressline1={address.addressline1}
-            addressline2={address.addressline2}
-            county={address.county}
-            city={address.city}
-            code={address.postalcode}
-          />
-        ))}
+        {addresses &&
+          addresses.map((address, index) => (
+            <AddressCard
+              key={index}
+              addressline1={address.addressline1}
+              addressline2={address.addressline2}
+              county={address.county}
+              city={address.city}
+              code={address.postalcode}
+            />
+          ))}
       </div>
 
       <br />
