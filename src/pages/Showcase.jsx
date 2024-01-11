@@ -26,7 +26,6 @@ function Showcase() {
       setPosts(resultdata);
       setUser(cookies.get("email"));
     });
-    console.log(1);
   }, []);
 
   function showAddForm() {
