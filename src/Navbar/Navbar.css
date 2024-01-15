@@ -4,21 +4,30 @@
   align-items: center;
   padding: 0 40px;
   background-color: #fff;
+  height: 70px;
 }
 
 .navbar img {
-  width: 180px;
-  height: 70px;
+  width: 160px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .navbar_form {
   width: 450px;
   height: 40px;
-
+  font-size: 14px;
   padding: 3px;
   border-radius: 5px;
   padding-left: 5px;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.navbar_form input {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: inherit;
+  border: 2px solid #94C973 !important;
 }
 
 .navbar_search {
@@ -31,12 +40,11 @@
 }
 
 .search_button {
-  height: 79%;
   border: none;
   border-radius: 5px;
   font-size: 15px;
   background-color: #76b947;
-  padding: 0 15px;
+  padding: 4px 14px;
   color: #fff;
   font-weight: 500;
   cursor: pointer;
@@ -71,4 +79,127 @@
   min-width: 160px;
   padding: 12px 16px;
   z-index: 1;
+}
+
+.hamburger-menu {
+  display: none;
+  z-index: 3;
+}
+
+.bars-icon {
+  color: #000;
+}
+
+.close-icon {
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background-color: rgba(34, 34, 34, 0.95);
+  display: flex;
+  align-items: flex-start;
+  padding: 25px;
+  z-index: 2;
+  animation: modal-slide-in 0.3s ease-in-out;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modal-content a {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 300;
+  padding: 15px;
+}
+
+.modal-content a:focus {
+  font-weight: 500;
+}
+
+@keyframes modal-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Media query for responsive design */
+@media only screen and (max-width: 1390px) {
+  .navbar_links {
+    font-size: 16px;
+  }
+
+  .navbar_form {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 1210px) {
+  .navbar_links a {
+    margin: 8px;
+  }
+
+  .navbar_form {
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width: 1115px) {
+
+  .navbar_links {
+    font-size: 14px;
+  }
+
+  .navbar_links a {
+    margin: 5px;
+    font-weight: 400;
+  }
+
+
+  .navbar_form {
+    width: 100px;
+  }
+
+  .navbar_search {
+    font-size: 14px;
+  }
+
+  .search_button {
+    font-size: 14px;
+  }
+
+  .navbar img {
+    width: auto;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar_links a {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .navbar_form {
+    width: 300px;
+  }
+
 }

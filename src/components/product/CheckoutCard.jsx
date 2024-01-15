@@ -25,6 +25,9 @@ function CheckoutCard(props) {
 
   return (
     <tr className={classes.container}>
+      <td className={classes.td}>
+        <img src={props.imageUrl} className={classes.tdimg}></img>
+      </td>
       <td className={classes.td}>{props.name}</td>
       <td className={classes.td}>{props.quantity}</td>
       <td className={classes.td}>{props.price} £</td>

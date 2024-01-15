@@ -71,8 +71,10 @@ export const ProductsProvider = ({ children }) => {
     const productRef = doc(productsCollection, productId);
     await updateDoc(productRef, updatedProduct);
 
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== productId)
+    setProducts((prevProduct) =>
+      prevProduct.id === updatedProduct.id
+        ? { ...prevProduct, updatedProduct }
+        : prevProduct
     );
   };
 

@@ -19,4 +19,5 @@ a {
 .align_center {
   display: flex;
   align-items: center;
+  text-align: center;
 }

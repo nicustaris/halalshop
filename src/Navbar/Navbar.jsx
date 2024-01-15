@@ -9,12 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth, store } from "../firebase";
 import { getDocs, collection } from "firebase/firestore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const cookies = new Cookie();
   const [loggedIn, setLoggedIn] = useState(true);
   const [value, setValue] = useState("");
   const [displayResult, setDisplayResult] = useState([]);
+  const [hamburgherMenu, setHamburgherMenu] = useState(false);
+
   const email = cookies.get("email");
   const navigate = useNavigate();
 
@@ -40,6 +44,7 @@ const Navbar = () => {
     navigate("/");
     window.location.reload(true);
   }
+
   async function onChange(e) {
     setValue(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
     await getDocs(collection(store, "products")).then((data) => {
@@ -55,14 +60,21 @@ const Navbar = () => {
     });
   }
 
+  const hamburgherMenuToggle = () => {
+    setHamburgherMenu(!hamburgherMenu);
+  };
+
   return (
     <nav className="navbar">
       <div className="align_center">
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
+
         <div className="align_center navbar_form">
           <input
             type="text"
-            placeholder="Search Products"
+            placeholder="Search Products..."
             className="navbar_search"
             onChange={onChange}
             value={value}
@@ -88,7 +100,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/Products">Products</Link>
         <Link to="/Promotions">Special Offers</Link>
-        <Link to="/About Us">About Us</Link>
+        <Link to="/Showcase">Showcase</Link>
         <Link to="/Cart">Cart</Link>
         {loggedIn ? (
           <div>
@@ -104,6 +116,37 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <FontAwesomeIcon
+        onClick={hamburgherMenuToggle}
+        icon={hamburgherMenu ? faClose : faBars}
+        className={`hamburger-menu ? ${
+          hamburgherMenu ? "close-icon" : "bars-icon"
+        }`}
+      />
+      {hamburgherMenu && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <Link to="/">Home</Link>
+            <Link to="/Products">Products</Link>
+            <Link to="/Promotions">Special Offers</Link>
+            <Link to="/Showcase">Showcase</Link>
+            <Link to="/Cart">Cart</Link>
+            {loggedIn ? (
+              <>
+                <Link to="/SignUp">Sign Up</Link>
+                <Link to="/SignIn">Sign In</Link>
+              </>
+            ) : (
+              <>
+                <Link to="" onClick={Logout}>
+                  Sign Out
+                </Link>
+                <Link to="/Profile">Profile</Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

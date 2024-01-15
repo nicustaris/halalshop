@@ -19,7 +19,7 @@ function ProductCard(props) {
   function increment() {
     setQuantity(quantity + 1);
   }
-  async function addProduct(name, price, quantity) {
+  async function addProduct(name, price, quantity, imageUrl) {
     let productid = btoa(Math.random()).slice(0, 20);
 
     if (!cookies.get("cartid")) {
@@ -36,6 +36,7 @@ function ProductCard(props) {
             productName: name,
             productPrice: price,
             quantity: parseInt(quantity),
+            imageUrl: imageUrl,
           },
         ],
       });
@@ -54,6 +55,7 @@ function ProductCard(props) {
             productName: name,
             productPrice: price,
             quantity: parseInt(quantity),
+            imageUrl: imageUrl,
           }),
         });
       }
@@ -62,6 +64,7 @@ function ProductCard(props) {
   return (
     <div className={classes.container}>
       <div className={classes.proddetails}>
+        <img src={props.imageUrl} className={classes.imageUrl}></img>
         <p>{props.name}</p>
         <div className={classes.price}>
           <p className={classes.p}>{props.price}</p>
@@ -81,9 +84,12 @@ function ProductCard(props) {
       <div className={classes.img}>
         <img
           src="/cart_icon.jpg"
-          width={23}
-          height={23}
-          onClick={() => addProduct(props.name, props.price, quantity)}></img>
+          width={30}
+          height={30}
+          onClick={() =>
+            addProduct(props.name, props.price, quantity, props.imageUrl)
+          }
+        ></img>
       </div>
       <p>{alert}</p>
     </div>

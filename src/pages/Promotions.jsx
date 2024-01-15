@@ -6,6 +6,7 @@ import { store } from "../firebase";
 
 function Promotions() {
   const [promotions, setPromotions] = useState([]);
+
   useEffect(() => {
     getDocs(collection(store, "promotions")).then((data) => {
       const resultdata = data.docs.map((doc) => ({
@@ -16,19 +17,25 @@ function Promotions() {
       setPromotions(resultdata);
     });
   }, []);
+
   return (
     <div>
       <Navbar />
-      {promotions.map((el) => (
-        <PromotionsCard
-          key={el.id}
-          discount={el.discount}
-          name={el.name}
-          price={el.price}
-          imageUrl={el.imageURL}
-          unit={el.unit}
-        />
-      ))}
+      <h1 style={{ textAlign: "center", margin: "15px 0 15px 0" }}>
+        Special Offers
+      </h1>
+      <div className="promotions-card-container">
+        {promotions.map((el) => (
+          <PromotionsCard
+            key={el.id}
+            discount={el.discount}
+            name={el.name}
+            price={el.price}
+            imageUrl={el.imageURL}
+            unit={el.unit}
+          />
+        ))}
+      </div>
     </div>
   );
 }

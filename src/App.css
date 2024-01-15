@@ -1,4 +1,5 @@
-.app {
-    display: grid;
-    grid-template-rows: 80px auto;
+.body-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
 }

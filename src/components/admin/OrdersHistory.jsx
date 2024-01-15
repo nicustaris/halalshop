@@ -38,9 +38,6 @@ const OrdersHistory = () => {
                     {order.paymentTime?.toDate().toLocaleString()}
                   </p>
                   <p>
-                    <strong>Total:</strong> ${order.total}
-                  </p>
-                  <p>
                     <strong>Address:</strong> {order.address?.join(", ")}
                   </p>
                   <p>
@@ -60,7 +57,7 @@ const OrdersHistory = () => {
                 </div>
                 <div className="order-total">
                   <p>
-                    <strong>Total:</strong> ${order.total}
+                    <strong>Total:</strong> £{order.total}
                   </p>
                 </div>
               </div>

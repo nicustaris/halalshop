@@ -95,8 +95,8 @@ const ProductsManagement = () => {
             onChange={handleInputChange}
           >
             <option value="">Choose</option>
-            {categories.map((category, index) => (
-              <option key={index} value={category.categoryName}>
+            {categories.map((category) => (
+              <option key={category.id} value={category.categoryName}>
                 {category.categoryName}
               </option>
             ))}

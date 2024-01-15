@@ -14,6 +14,7 @@
   border: 2px solid #76b947;
   border-radius: 5px;
 }
+
 .buttoncontainer {
   display: flex;
   align-content: flex-start;
@@ -23,24 +24,33 @@
 
   width: min-content;
 }
+
 .proddetails {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
-  width: 250px;
+  width: 350px;
 }
 
 .p {
-  font-size: 15px;
+  font-size: 25px;
 }
 
 .price {
   display: flex;
 }
+
 .img {
   transition: all 0.2s ease-in-out;
 }
 
 .img:hover {
   transform: scale(1.05);
+}
+
+.imageUrl {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
 }
