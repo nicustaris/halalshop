@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import { store } from "../../firebase";
 
 import "./PromotionsCard.css";
+import { toast } from "react-toastify";
 
 function PromotionsCard(props) {
   const [quantity, setQuantity] = useState(1);
@@ -21,7 +22,7 @@ function PromotionsCard(props) {
     setQuantity(quantity + 1);
   }
 
-  async function addProduct(name, price, quantity) {
+  async function addProduct(name, price, quantity, imageUrl) {
     let productid = btoa(Math.random()).slice(0, 20);
 
     if (!cookies.get("cartid")) {
@@ -38,6 +39,7 @@ function PromotionsCard(props) {
             productName: name,
             productPrice: price,
             quantity: parseInt(quantity),
+            imageUrl: imageUrl,
           },
         ],
       });
@@ -50,14 +52,17 @@ function PromotionsCard(props) {
         .products.find((element) => element.productName === name);
       if (check) {
         setAlert("Products already added to your cart");
+        toast.warning("Products already added to your cart");
       } else {
         await updateDoc(productRef, {
           products: arrayUnion({
             productName: name,
             productPrice: price,
             quantity: parseInt(quantity),
+            imageUrl: imageUrl,
           }),
         });
+        toast.success("Product added successfully!");
       }
     }
   }
@@ -85,7 +90,8 @@ function PromotionsCard(props) {
           addProduct(
             props.name,
             parseFloat((props.price * props.discount) / 100).toFixed(2),
-            quantity
+            quantity,
+            props.imageUrl
           )
         }
       >
