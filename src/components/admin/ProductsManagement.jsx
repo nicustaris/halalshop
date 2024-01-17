@@ -19,23 +19,23 @@ const ProductsManagement = () => {
     subcategory: "",
     unit: "",
   });
-
-  const columns = [
-    { Header: "Name", accessor: "name" },
-    { Header: "Price", accessor: "price" },
-    { Header: "Category", accessor: "category" },
-    { Header: "Subcategory", accessor: "subcategory" },
-    { Header: "Unit", accessor: "unit" },
-  ];
+  const [imageFile, setImageFile] = useState(null);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     if (name === "category" && value === "Meat") {
       setSubCategory(true);
     } else if (name === "category" && value !== "Meat") {
       setSubCategory(false);
+      setNewProduct((prevProduct) => ({ ...prevProduct, subcategory: value }));
     }
-    setNewProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
+
+    if (name === "image" && files && files.length > 0) {
+      const imageFile = files[0];
+      setNewProduct((prevProduct) => ({ ...prevProduct, image: imageFile }));
+    } else {
+      setNewProduct((prevProduct) => ({ ...prevProduct, [name]: value }));
+    }
   };
 
   const handleAddProduct = () => {
@@ -43,14 +43,15 @@ const ProductsManagement = () => {
       !newProduct.name ||
       !newProduct.price ||
       !newProduct.category ||
-      !newProduct.unit
+      !newProduct.unit ||
+      !imageFile
     ) {
       toast.error("Please fill in all required fields.");
       setError("Please fill in all required fields.");
       return;
     }
 
-    addProduct(newProduct);
+    addProduct(newProduct, imageFile);
     setNewProduct({
       name: "",
       price: "",
@@ -58,6 +59,7 @@ const ProductsManagement = () => {
       subcategory: "",
       unit: "",
     });
+    setImageFile(null);
     toast.success("Product added successfully!");
     setError("");
   };
@@ -86,6 +88,14 @@ const ProductsManagement = () => {
             value={newProduct.price}
             onChange={handleInputChange}
           />
+
+          <label className="label">Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="image"
+            onChange={(e) => setImageFile(e.target.files[0])}
+          ></input>
 
           <label className="label">Category</label>
           <select

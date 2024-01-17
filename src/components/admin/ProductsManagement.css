@@ -70,6 +70,7 @@
     font-size: 15px;
 }
 
+
 .product_container .product_info>input {
     border: 1px solid #ddd;
     padding: 5px;
@@ -102,4 +103,11 @@
     flex-direction: column;
     margin-right: 15px;
     padding: 10px;
+}
+
+.product_info .product_image {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
 }

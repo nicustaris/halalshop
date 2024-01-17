@@ -54,13 +54,20 @@ export const ProductsProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
-  const addProduct = async (newProduct) => {
+  const addProduct = async (newProduct, imageFile) => {
     try {
-      const docRef = await addDoc(productsCollection, newProduct);
+      const imageRef = ref(storage, `images/${newProduct.name}_${Date.now()}`);
+      await uploadBytes(imageRef, imageFile);
+      const imageUrl = await getDownloadURL(imageRef);
+
+      const docRef = await addDoc(productsCollection, {
+        ...newProduct,
+        imageUrl: imageUrl,
+      });
       const productId = docRef.id;
       setProducts((prevProducts) => [
         ...prevProducts,
-        { id: productId, ...newProduct },
+        { id: productId, imageUrl: imageUrl, ...newProduct },
       ]);
     } catch (error) {
       console.log(error);

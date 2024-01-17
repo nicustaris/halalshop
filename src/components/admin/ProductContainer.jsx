@@ -36,6 +36,9 @@ const ProductContainer = ({ product }) => {
   return (
     <div className="product_container">
       <div className="product_info">
+        <img src={product.imageUrl} className="product_image" />
+      </div>
+      <div className="product_info">
         <label>Name</label>
         <input
           onChange={handleChange}
