@@ -48,8 +48,9 @@ function PromotionsCard(props) {
       const result = await getDoc(productRef);
 
       let check = result
-        .data()
-        .products.find((element) => element.productName === name);
+        ?.data()
+        ?.products?.find((element) => element.productName === name);
+
       if (check) {
         setAlert("Products already added to your cart");
         toast.warning("Products already added to your cart");

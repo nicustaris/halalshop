@@ -11,6 +11,7 @@ function CheckoutCard(props) {
       productName: item.name,
       productPrice: item.price,
       quantity: item.quantity,
+      imageUrl: item.imageUrl,
     };
 
     let itemRef = doc(store, "usercart", cookies.get("cartid"));
