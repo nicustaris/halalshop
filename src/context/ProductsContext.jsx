@@ -29,9 +29,12 @@ export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [promotions, setPromotions] = useState([]);
+  const [orders, setOrders] = useState([]);
+
   const productsCollection = collection(store, "products");
   const categoriesCollection = collection(store, "categories");
   const promotionsCollection = collection(store, "promotions");
+  const ordersCollection = collection(store, "ordershistory");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,9 +46,11 @@ export const ProductsProvider = ({ children }) => {
         const promotionsData = await fetchDataFromCollection(
           promotionsCollection
         );
+        const ordersData = await fetchDataFromCollection(ordersCollection);
         setProducts(productsData);
         setCategories(categoriesData);
         setPromotions(promotionsData);
+        setOrders(ordersData);
       } catch (error) {
         console.log(error);
       }
@@ -202,6 +207,7 @@ export const ProductsProvider = ({ children }) => {
     addCategory,
     updateCategory,
     deleteCategory,
+    orders,
   };
   return (
     <ProductsContext.Provider value={contextValue}>

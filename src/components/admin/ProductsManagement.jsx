@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./ProductsManagement.css";
 import ProductContainer from "./ProductContainer";
-import ProductTable from "./ProductTable";
 
 const ProductsManagement = () => {
   const { products, categories, addProduct } = useProductsContext();

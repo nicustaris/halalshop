@@ -52,8 +52,8 @@ function PromotionsCard(props) {
         ?.products?.find((element) => element.productName === name);
 
       if (check) {
-        setAlert("Products already added to your cart");
-        toast.warning("Products already added to your cart");
+        setAlert("Product already added to your cart");
+        toast.warning("Product already added to your cart");
       } else {
         await updateDoc(productRef, {
           products: arrayUnion({
