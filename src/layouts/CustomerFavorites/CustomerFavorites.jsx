@@ -6,6 +6,7 @@ import { setDoc, doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { store } from "../../firebase";
 
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const CustomerFavorites = () => {
   const { orders, products } = useProductsContext();
@@ -83,7 +84,9 @@ const CustomerFavorites = () => {
               return (
                 <article key={index} className="product_details">
                   <div className="product_details_photo">
-                    <img src={productInfo.imageUrl} />
+                    <Link to="/ProductList" state={{ productName: product }}>
+                      <img src={productInfo.imageUrl} />
+                    </Link>
                   </div>
                   <div className=" product_details_container">
                     <p className="product_details_heading">{product}</p>

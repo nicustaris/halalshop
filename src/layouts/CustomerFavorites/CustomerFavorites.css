@@ -4,7 +4,7 @@
 }
 
 .customer_favorites_heading {
-    margin-top: 25px;
+    margin: 30px 0;
     font-size: 36px;
 }
 
@@ -19,6 +19,7 @@
     border-radius: 10px;
     width: 240px;
     height: 300px;
+    margin-bottom: 60px;
 }
 
 .product_details_photo {
