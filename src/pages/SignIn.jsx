@@ -20,6 +20,8 @@ function SignIn() {
   const cookies = new Cookies();
   const location = useLocation();
 
+  console.log("Current location state:", location.state);
+
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
 
@@ -120,7 +122,7 @@ function SignIn() {
           ...doc.data(),
           id: doc.id,
         }));
-        console.log(resultdata[0]);
+
         if (!resultdata[0]) {
           addDoc(collection(store, "usersdetails"), {
             email: result.user.email,
@@ -131,11 +133,11 @@ function SignIn() {
         }
       });
 
-      if (location.state === null) {
-        navigate("/");
-      } else {
-        navigate(location.state.previousUrl);
-      }
+      // if (location.state === null) {
+      //   navigate("/");
+      // } else {
+      //   navigate(location.state.previousUrl);
+      // }
     });
   };
 

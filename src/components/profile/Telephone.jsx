@@ -31,11 +31,11 @@ function Telephone() {
     if (!user) {
       navigate("/");
     }
+
     getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      console.log(result[0].telephone);
       setTelephone(result[0].telephone);
     });
 

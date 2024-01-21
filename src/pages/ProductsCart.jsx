@@ -12,9 +12,11 @@ import { Modal } from "../components/product/Modal";
 function ProductsCart() {
   const [products, setProducts] = useState([]);
   const [modal, setModal] = useState(false);
+
   const cookies = new Cookies();
-  let totalPrice = 0;
+  const user = cookies.get("email");
   const navigate = useNavigate();
+  let totalPrice = 0;
 
   useEffect(() => {
     getdocument();
@@ -39,6 +41,10 @@ function ProductsCart() {
   function hideModal() {
     setModal(false);
   }
+
+  const handleRedirect = () => {
+    navigate("/SignIn", { state: { previousUrl: "/Cart" } });
+  };
 
   return (
     <div>
@@ -74,9 +80,16 @@ function ProductsCart() {
           </tbody>
         </table>
         <h2>Total : {parseFloat(totalPrice).toFixed(2)}£</h2>
-        <button onClick={checkout} className={classes.checkout}>
-          Checkout
-        </button>
+        {user ? (
+          <button onClick={checkout} className={classes.checkout}>
+            Checkout
+          </button>
+        ) : (
+          <em>
+            You must to <strong onClick={handleRedirect}>Sign In</strong> in
+            order to complete your order!
+          </em>
+        )}
       </div>
       {modal && <Modal hideModal={hideModal} />}
     </div>

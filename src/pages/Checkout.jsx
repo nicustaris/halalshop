@@ -45,6 +45,7 @@ function Checkout() {
     setAddress(true);
     setTotal(false);
   }
+
   function passAddress(addressline1, addressline2, county, city, code) {
     console.log(addressline1, addressline2, county, city, code);
     setDisplayAddress([addressline1, addressline2, county, city, code]);
@@ -123,7 +124,8 @@ function Checkout() {
           <div
             style={{
               width: "300px",
-            }}>
+            }}
+          >
             <PayPalScriptProvider options={initialOptions}>
               <PayPalButtons
                 style={{

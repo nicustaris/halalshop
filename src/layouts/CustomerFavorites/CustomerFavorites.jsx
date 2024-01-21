@@ -57,7 +57,6 @@ const CustomerFavorites = () => {
         .products.find((element) => element.productName === name);
       if (check) {
         toast.warning("Product already added to your cart");
-        setAlert("Product already added to your cart");
       } else {
         await updateDoc(productRef, {
           products: arrayUnion({

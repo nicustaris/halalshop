@@ -7,21 +7,24 @@ import { useNavigate } from "react-router-dom";
 
 function Gettel({ passPhone }) {
   const [telephone, setTelephone] = useState("");
+
   const cookies = new Cookies();
   const user = cookies.get("email");
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user) {
       navigate("/");
     }
+
     getDocs(
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      console.log(result[0].telephone);
       setTelephone(result[0].telephone);
     });
   }, []);
+
   function handlePhone() {
     navigate("/Profile", { state: { previousUrl: "/Checkout" } });
   }
@@ -30,19 +33,22 @@ function Gettel({ passPhone }) {
     <div>
       <h1>Telephone Number</h1>
       {telephone ? (
-        <h3>{telephone} Is this telephone number correct?</h3>
+        <>
+          <h3>{telephone} Is this telephone number correct?</h3>
+          <button
+            onClick={() => {
+              passPhone(telephone);
+            }}
+          >
+            Yes
+          </button>
+          <button onClick={handlePhone}>No</button>
+        </>
       ) : (
         <h3>
           You have no phone set.<button onClick={handlePhone}>Set Phone</button>
         </h3>
       )}
-      <button
-        onClick={() => {
-          passPhone(telephone);
-        }}>
-        Yes
-      </button>
-      <button onClick={handlePhone}>No</button>
     </div>
   );
 }
