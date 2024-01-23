@@ -3,14 +3,29 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background-color: #76b947;
   height: 100vh;
   padding-top: 70px;
 }
 
+.container h1 {
+  font-style: italic;
+  font-weight: 400;
+}
+
 .table {
-  width: 800px;
-  border: 2px solid #32c01a;
+  width: 50%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px solid #ededed;
+}
+
+.thead {
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+.tr th {
+  padding: 15px;
 }
 
 .header {
@@ -18,18 +33,20 @@
   gap: 20px;
 }
 
-.thead {
-  border: 2px solid #32c01a;
-}
-
-.th {
-  border: 2px solid #32c01a;
-}
-
 .checkout {
-  width: 150px;
-  height: 40px;
-  border: 2px solid #32c01a;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
   border-radius: 5px;
+  padding: 10px 20px;
   font-size: 20px;
+}
+
+.paymentmodal {
+  background-color: red;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }

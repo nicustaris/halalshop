@@ -50,15 +50,16 @@ function ProductsCart() {
     <div>
       <Navbar />
       <div className={classes.container}>
-        <h1>Products Cart</h1>
+        <h1>My Cart</h1>
         <table className={classes.table}>
           <thead className={classes.thead}>
-            <tr>
+            <tr className={classes.tr}>
               <th>Image</th>
-              <th className={classes.th}>Product Name</th>
-              <th className={classes.th}>Quantity</th>
-              <th className={classes.th}>Price</th>
-              <th className={classes.th}>Subtotal</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th className={classes.subtotal}>Subtotal</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -79,10 +80,10 @@ function ProductsCart() {
             })}
           </tbody>
         </table>
-        <h2>Total : {parseFloat(totalPrice).toFixed(2)}£</h2>
+        <h4>TOTAL: {parseFloat(totalPrice).toFixed(2)}£</h4>
         {user ? (
           <button onClick={checkout} className={classes.checkout}>
-            Checkout
+            Proceed to Checkout
           </button>
         ) : (
           <em>

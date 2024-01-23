@@ -5,6 +5,8 @@ import { store } from "../../firebase";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 
+import classes from "./checkout.module.css";
+
 function Gettel({ passPhone }) {
   const [telephone, setTelephone] = useState("");
 
@@ -30,19 +32,28 @@ function Gettel({ passPhone }) {
   }
 
   return (
-    <div>
-      <h1>Telephone Number</h1>
+    <div className={classes.container}>
+      <h1>Delivery Information</h1>
       {telephone ? (
         <>
-          <h3>{telephone} Is this telephone number correct?</h3>
+          <em>Contact Information</em>
+          <input type="text" defaultValue={`${user}`} readOnly />
+          <input type="text" defaultValue={`${telephone}`} readOnly />
+          <em>Are the details correct?</em>
           <button
             onClick={() => {
               passPhone(telephone);
             }}
+            className={classes.btn}
           >
             Yes
           </button>
-          <button onClick={handlePhone}>No</button>
+          <button
+            onClick={handlePhone}
+            className={`${classes.btn} ${classes.btnNo}`}
+          >
+            No
+          </button>
         </>
       ) : (
         <h3>

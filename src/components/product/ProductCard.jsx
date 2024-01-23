@@ -4,6 +4,7 @@ import classes from "./ProductCard.module.css";
 import Cookies from "universal-cookie";
 import { setDoc, doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { store } from "../../firebase";
+import { toast } from "react-toastify";
 
 function ProductCard(props) {
   const [quantity, setQuantity] = useState(1);
@@ -40,6 +41,7 @@ function ProductCard(props) {
           },
         ],
       });
+      toast.success("Product added successfully to the cart!");
     } else {
       let productRef = doc(store, "usercart", cookies.get("cartid"));
       const result = await getDoc(productRef);
@@ -48,7 +50,8 @@ function ProductCard(props) {
         .data()
         .products.find((element) => element.productName === name);
       if (check) {
-        setAlert("products already added to your cart");
+        setAlert("Product already added to your cart!");
+        toast.warning("Product already added to your cart!");
       } else {
         await updateDoc(productRef, {
           products: arrayUnion({
@@ -58,14 +61,16 @@ function ProductCard(props) {
             imageUrl: imageUrl,
           }),
         });
+        toast.success("Product added successfully to the cart!");
       }
     }
   }
+
   return (
     <div className={classes.container}>
       <div className={classes.proddetails}>
-        <img src={props.imageUrl} className={classes.imageUrl}></img>
-        <p>{props.name}</p>
+        <img src={props.imageUrl} className={classes.imageUrl} />
+        <p className={classes.productname}>{props.name}</p>
         <div className={classes.price}>
           <p className={classes.p}>{props.price}</p>
           <p className={classes.p}>£/</p>
@@ -83,13 +88,14 @@ function ProductCard(props) {
       </div>
       <div className={classes.img}>
         <img
-          src="/cart_icon.jpg"
+          src="/add-to-cart-3046.svg"
+          style={{ width: "25px", marginTop: "5px" }}
           width={30}
           height={30}
           onClick={() =>
             addProduct(props.name, props.price, quantity, props.imageUrl)
           }
-        ></img>
+        />
       </div>
       <p>{alert}</p>
     </div>

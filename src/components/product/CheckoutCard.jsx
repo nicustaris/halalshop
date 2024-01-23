@@ -31,11 +31,13 @@ function CheckoutCard(props) {
       </td>
       <td className={classes.td}>{props.name}</td>
       <td className={classes.td}>{props.quantity}</td>
-      <td className={classes.td}>{props.price} £</td>
-      <td className={classes.td}>{props.subtotal} £</td>
+      <td className={classes.td}>£{props.price}</td>
+      <td className={classes.td}>£{props.subtotal}</td>
 
       <td className={classes.td}>
-        <button onClick={() => removeItem(props)}>Remove</button>
+        <button onClick={() => removeItem(props)} className={classes.removebtn}>
+          <img src="/delete.svg" style={{ width: "25px" }} />
+        </button>
       </td>
     </tr>
   );
