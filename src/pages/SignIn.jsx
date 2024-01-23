@@ -133,11 +133,11 @@ function SignIn() {
         }
       });
 
-      // if (location.state === null) {
-      //   navigate("/");
-      // } else {
-      //   navigate(location.state.previousUrl);
-      // }
+      if (location.state === null) {
+        navigate("/");
+      } else {
+        navigate(location.state.previousUrl);
+      }
     });
   };
 

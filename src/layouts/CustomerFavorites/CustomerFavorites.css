@@ -9,17 +9,20 @@
 }
 
 .customer_favorites_products {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     height: 100%;
     justify-content: space-evenly;
 }
 
 .product_details {
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     width: 240px;
     height: 300px;
     margin-bottom: 60px;
+    padding: 15px;
 }
 
 .product_details_photo {
