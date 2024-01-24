@@ -39,6 +39,15 @@
     border: 1px solid #ddd;
 }
 
+.btnchangeaddress {
+    background-color: #FFBF00;
+}
+
 .btnNo:hover {
     background-color: #f3f3f3;
+}
+
+.newaddress {
+    font-size: 16px;
+    margin-top: 25px;
 }

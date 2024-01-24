@@ -98,36 +98,61 @@ function Checkout() {
         {phone && <Gettel passPhone={passPhone} />}
         {address && <GetAddr passAddress={passAddress} />}
         {total && (
-          <div>
-            {telephone}
-            {displayAddress.map((el, index) => (
-              <ul key={index}>
-                <li>{el}</li>
-              </ul>
-            ))}
-            {products.map((product, index) => {
-              totalPrice += product.productPrice * product.quantity;
-              return (
-                <ul key={index}>
-                  <li>{product.productName}</li>
-                  <li>{product.quantity}</li>
-                  <li>{product.productPrice}</li>
-                  <li>
-                    Subtotal:
-                    {parseFloat(
-                      product.productPrice * product.quantity
-                    ).toFixed(2)}
-                  </li>
-                </ul>
-              );
-            })}
-            <h3>Total ={parseFloat(totalPrice).toFixed(2)} </h3>
-
-            <div
-              style={{
-                width: "300px",
-              }}
-            >
+          <div className={classes.total_section}>
+            <div className={classes.total_section_details}>
+              <p>
+                <strong>Contact Information</strong>
+              </p>
+              <input
+                type="text"
+                defaultValue={`${cookies.get("email")}`}
+                readOnly
+                disabled={true}
+              />
+              <input
+                type="text"
+                defaultValue={`${telephone}`}
+                readOnly
+                disabled={true}
+              />
+              <p>
+                <strong>Delivery Address</strong>
+              </p>
+              <div className={classes.deliveryaddress}>
+                {displayAddress.map((el, index) => (
+                  <ul key={index}>
+                    <li>{el}</li>
+                  </ul>
+                ))}
+              </div>
+              <p>
+                <strong>Products</strong>
+              </p>
+              <div className={classes.products_list}>
+                {products.map((product, index) => {
+                  totalPrice += product.productPrice * product.quantity;
+                  return (
+                    <ul key={index} className={classes.list}>
+                      <li>{product.productName}</li>
+                      <li>{product.quantity}</li>
+                      <li>£{product.productPrice}</li>
+                      <li>
+                        <strong>
+                          Subtotal: £
+                          {parseFloat(
+                            product.productPrice * product.quantity
+                          ).toFixed(2)}
+                        </strong>
+                      </li>
+                    </ul>
+                  );
+                })}
+              </div>
+              <h3 style={{ margin: "15px 0" }}>
+                Total: £{parseFloat(totalPrice).toFixed(2)}
+              </h3>
+            </div>
+            <div className={classes.total_section_details}>
               <PayPalScriptProvider options={initialOptions}>
                 <PayPalButtons
                   style={{

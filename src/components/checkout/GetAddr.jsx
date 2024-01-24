@@ -8,6 +8,8 @@ import { getDocs, collection, where, query } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { GetAddressCard } from "./GetAddressCard";
 
+import classes from "./checkout.module.css";
+
 function GetAddr({ passAddress }) {
   const cookies = new Cookies();
   const [address, setAddress] = useState([]);
@@ -21,26 +23,26 @@ function GetAddr({ passAddress }) {
       query(collection(store, "usersdetails"), where("email", "==", user))
     ).then((data) => {
       const result = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
       setAddress(result[0].addresses);
-      console.log(result[0].addresses);
     });
   }, []);
 
   function getAddress(addressline1, addressline2, county, city, code) {
     passAddress(addressline1, addressline2, county, city, code);
   }
+
   function addressRedirect() {
     navigate("/Profile", { state: { previousUrl: "/Checkout" } });
   }
+
   return (
     <div>
-      <h3>Please choose a delivery Address</h3>
+      <h1 style={{ marginBottom: "15px" }}>Delivery Information</h1>
       {address.length > 0 ? (
         <div>
-          {address.map((address) => (
+          {address.map((address, index) => (
             <GetAddressCard
-              key={address.index}
+              key={index}
               addressline1={address.addressline1}
               addressline2={address.addressline2}
               county={address.county}
@@ -53,8 +55,13 @@ function GetAddr({ passAddress }) {
       ) : (
         <h3>You have no Delivery Address set</h3>
       )}
-      <h3>Set another address?</h3>
-      <button onClick={addressRedirect}>Proceed</button>
+      <div className={classes.newaddress}>Set another address?</div>
+      <button
+        onClick={addressRedirect}
+        className={`${classes.btn} ${classes.btnchangeaddress}`}
+      >
+        Proceed
+      </button>
     </div>
   );
 }

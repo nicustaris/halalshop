@@ -37,8 +37,18 @@ function Gettel({ passPhone }) {
       {telephone ? (
         <>
           <em>Contact Information</em>
-          <input type="text" defaultValue={`${user}`} readOnly />
-          <input type="text" defaultValue={`${telephone}`} readOnly />
+          <input
+            type="text"
+            defaultValue={`${user}`}
+            readOnly
+            disabled={true}
+          />
+          <input
+            type="text"
+            defaultValue={`${telephone}`}
+            readOnly
+            disabled={true}
+          />
           <em>Are the details correct?</em>
           <button
             onClick={() => {
