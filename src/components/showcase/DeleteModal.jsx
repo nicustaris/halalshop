@@ -16,11 +16,11 @@ function DeleteModal({ props, hideDeleteModal }) {
     <div className={classes.container} onClick={props.hideDeleteModal}>
       <h2>Are you sure you want to delete this post?</h2>
       <div>
-        <button onClick={deletePost} className={classes.button}>
-          Yes
+        <button onClick={deletePost} className={classes.submitBtn}>
+          Confirm
         </button>
-        <button onClick={hideDeleteModal} className={classes.button}>
-          No
+        <button onClick={hideDeleteModal} className={classes.cancelBtn}>
+          Cancel
         </button>
       </div>
     </div>

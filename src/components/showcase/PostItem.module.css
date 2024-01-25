@@ -9,6 +9,7 @@
   border-radius: 5px;
   gap: 5px;
   margin: auto;
+  margin-bottom: 15px;
 }
 
 .image {
@@ -38,4 +39,13 @@
 
 legend {
   margin-left: 20px;
+}
+
+.removeBtn {
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  background-color: #e4871c;
+  color: #fff;
+  margin-top: 15px;
 }

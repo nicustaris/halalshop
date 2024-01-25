@@ -17,8 +17,30 @@
   gap: 5px;
 }
 
+.container h2 {
+  color: #fff;
+}
+
 .button {
   width: 100px;
   height: 25px;
   margin: 10px;
+}
+
+.submitBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  margin: 0 5px;
+}
+
+.cancelBtn {
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  background-color: #d3b03d;
+  color: #fff;
+  margin: 0 5px;
 }

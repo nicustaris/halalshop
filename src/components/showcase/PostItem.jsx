@@ -38,7 +38,11 @@ function PostItem(props) {
         <div className={classes.description}>{props.description}</div>
       </div>
       <img src={props.imageURL} className={classes.image}></img>
-      {deleteButton && <button onClick={showDeleteModal}>Delete Post</button>}
+      {deleteButton && (
+        <button onClick={showDeleteModal} className={classes.removeBtn}>
+          Delete This Post
+        </button>
+      )}
       {deleteModal && (
         <DeleteModal hideDeleteModal={hideDeleteModal} props={props} />
       )}
