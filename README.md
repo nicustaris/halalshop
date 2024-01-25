@@ -66,10 +66,12 @@ The showcase feature offers users the opportunity to share their dishes with the
 
 The profile section, accessible from the navigation bar after users sign in, provides various functionalities:
 
+```
 - **Add Address**: Users can add their delivery address for shipping purposes.
 - **Update Phone**: Users have the option to update their contact phone number.
 - **Reset Password**: Allows users to change their password if needed.
 - **Delete Account**: Provides the option for users to permanently remove their account from the platform.
+```
 
 ### Add to Basket
 
@@ -91,12 +93,14 @@ The admin route is secured and is defined by a field in the database: `isAdmin: 
 
 ### Admin Features Instruction
 
+```
 - **Users Management**: Allows viewing, and searching for specific user, accessing user details, viewing, and removing users. All user information can be found here.
 - **Products Management**: Enables adding new products by filling required inputs and clicking "Add Product". Admins can also edit existing products, change prices, or delete them.
 - **Promotion Products Management**: Similar to Products Management, admins can add new offers with the original price and discount percentage. For example, a product priced at £10 with a 50% discount will be displayed at £5 for users on the promotions page. Admins can also edit the discount for existing products or remove them.
 - **Category Management**: As the web app grows, admins can add new categories by providing a category name and choosing a background image for the category.
 - **Showcase**: Admins can delete inappropriate posts or any posts that go against Hafiz Halal Shop policy.
 - **Orders History**: This route displays all processed orders with details such as time, payment type, email, customer telephone, address, and a list of products ordered with quantities. Every detail about processed orders can be found here.
+```
 
 ## Features
 
