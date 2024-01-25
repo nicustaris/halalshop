@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+
 import { Home } from "./pages/Home";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
@@ -17,6 +17,8 @@ import { Failure } from "./pages/Failure";
 import { ProductsProvider } from "./context/ProductsContext";
 import { UsersProvider } from "./context/UsersContext";
 
+import "./App.css";
+
 import MainAdminPanel from "./components/admin/MainAdminPanel";
 import UsersManagement from "./components/admin/UsersManagement";
 import ProductsManagement from "./components/admin/ProductsManagement";
@@ -26,6 +28,7 @@ import ShowcaseManagement from "./components/admin/ShowcaseManagement";
 import PromotionManagementProductView from "./components/admin/PromotionManagementProductView";
 import CategoryManagement from "./components/admin/CategoryManagement";
 import OrdersHistory from "./components/admin/OrdersHistory";
+import PrivateRoute from "./PrivateRoute";
 
 const App = () => {
   return (
@@ -45,40 +48,43 @@ const App = () => {
           <Route path="/Failure" element={<Failure />}></Route>
           <Route path="/Succes" element={<Succes />}></Route>
           <Route path="/Promotions" element={<Promotions />}></Route>
+
           {/* Admin Routes */}
-          <Route path="/Admin" element={<MainAdminPanel />}></Route>
-          <Route
-            path="/Admin/UsersManagement"
-            element={<UsersManagement />}
-          ></Route>
-          <Route
-            path="/Admin/UsersManagement/:userEmail"
-            element={<UserProfileView />}
-          ></Route>
-          <Route
-            path="/Admin/ProductsManagement"
-            element={<ProductsManagement />}
-          ></Route>
-          <Route
-            path="/Admin/PromotionManagement"
-            element={<PromotionManagement />}
-          ></Route>
-          <Route
-            path="/Admin/PromotionManagement/:productId"
-            element={<PromotionManagementProductView />}
-          ></Route>
-          <Route
-            path="/Admin/CategoryManagement"
-            element={<CategoryManagement />}
-          ></Route>
-          <Route
-            path="/Admin/ShowcaseManagement"
-            element={<ShowcaseManagement />}
-          ></Route>
-          <Route
-            path="/Admin/OrdersHistory"
-            element={<OrdersHistory />}
-          ></Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/Admin" element={<MainAdminPanel />}></Route>
+            <Route
+              path="/Admin/UsersManagement"
+              element={<UsersManagement />}
+            ></Route>
+            <Route
+              path="/Admin/UsersManagement/:userEmail"
+              element={<UserProfileView />}
+            ></Route>
+            <Route
+              path="/Admin/ProductsManagement"
+              element={<ProductsManagement />}
+            ></Route>
+            <Route
+              path="/Admin/PromotionManagement"
+              element={<PromotionManagement />}
+            ></Route>
+            <Route
+              path="/Admin/PromotionManagement/:productId"
+              element={<PromotionManagementProductView />}
+            ></Route>
+            <Route
+              path="/Admin/CategoryManagement"
+              element={<CategoryManagement />}
+            ></Route>
+            <Route
+              path="/Admin/ShowcaseManagement"
+              element={<ShowcaseManagement />}
+            ></Route>
+            <Route
+              path="/Admin/OrdersHistory"
+              element={<OrdersHistory />}
+            ></Route>
+          </Route>
         </Routes>
       </ProductsProvider>
     </UsersProvider>
