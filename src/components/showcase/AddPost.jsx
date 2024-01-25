@@ -33,7 +33,9 @@ function AddPost(props) {
           description: descriptionRef.current.value,
           imageURL: val,
         });
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       });
     });
   };
