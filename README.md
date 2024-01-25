@@ -4,14 +4,24 @@ Hafiz Halal Shop is an ecommerce website that specializes in selling halal meat,
 
 ## Table Of Contents
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Content Management System Panel](#content-management-system)
-- [Features](#features)
-- [Demo](#demo)
-- [Technology Stack](#technology-stack)
-- [Reporting Issues](#reporting-issues)
+- [Hafiz Halal Shop](#hafiz-halal-shop)
+  - [Table Of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Usage](#usage)
+    - [Registration](#registration)
+    - [Login](#login)
+    - [Explore Products](#explore-products)
+    - [Showcase](#showcase)
+    - [Profile](#profile)
+    - [Add to Basket](#add-to-basket)
+    - [Checkout and Payment](#checkout-and-payment)
+  - [Content Management System](#content-management-system)
+    - [Admin Features Instruction](#admin-features-instruction)
+  - [Features](#features)
+  - [Demo](#demo)
+  - [Technology Stack](#technology-stack)
+  - [Reporting Issues](#reporting-issues)
 
 ## Installation
 
@@ -116,7 +126,7 @@ The admin route is secured and is defined by a field in the database: `isAdmin: 
 
 ## Demo
 
-Explore the live demo: [Hafiz Halal Shop](https://staris.dev)
+Explore the live demo: [Hafiz Halal Shop](https://halal-shop-505b4.web.app/)
 
 ## Technology Stack
 

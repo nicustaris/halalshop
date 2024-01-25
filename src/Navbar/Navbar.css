@@ -203,3 +203,37 @@
   }
 
 }
+
+@media only screen and (max-width: 530px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+    position: relative;
+  }
+
+  .align_center {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+    position: absolute;
+    top: 1px;
+    right: 10px;
+  }
+
+  .search_button {
+    font-size: 14px;
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+
+  .navbar_search {
+    width: 100% !important;
+  }
+
+}
