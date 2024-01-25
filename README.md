@@ -11,6 +11,7 @@ Hafiz Halal Shop is an ecommerce website that specializes in selling halal meat,
 - [Features](#features)
 - [Demo](#demo)
 - [Technology Stack](#technology-stack)
+- [Reporting Issues](#reporting-issues)
 
 ## Installation
 
@@ -127,3 +128,7 @@ Hafiz Halal Shop is built using a modern stack of technologies to ensure a seaml
 - **React**: A JavaScript library for building single-page applications (SPAs).
 - **Vite**: A fast build tool that significantly improves the frontend development experience by offering blazing fast builds.
 - **HTML**: HyperText Markup Language for structuring web content.
+
+## Reporting Issues
+
+If you encounter a bug, have a feature request, or notice any issues while using Hafiz Halal Shop, please open an issue on our [GitHub Issue Tracker](https://github.com/nicustaris/halalshop/issues). Be sure to include detailed information about the problem, steps to reproduce it, and your system configuration.
