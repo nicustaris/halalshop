@@ -78,9 +78,13 @@ function AddPost(props) {
         </div>
         <br />
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className={classes.submitBtn}>
+            Submit
+          </button>
 
-          <button onClick={props.hideAddForm}>Cancel</button>
+          <button onClick={props.hideAddForm} className={classes.cancelBtn}>
+            Cancel
+          </button>
         </div>
       </form>
     </div>

@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 50%;
   height: fit-content;
-  border: 2px solid #76b947;
+  border: 1px solid #76b947;
   border-radius: 5px;
   gap: 5px;
   margin: auto;
@@ -14,6 +14,7 @@
 .image {
   width: 85%;
   height: 17vmax;
+  object-fit: contain;
 
   border-radius: 5px;
 }
@@ -34,6 +35,7 @@
 .description {
   font-size: 14px;
 }
+
 legend {
   margin-left: 20px;
 }

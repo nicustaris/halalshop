@@ -67,7 +67,10 @@ function Gettel({ passPhone }) {
         </>
       ) : (
         <h3>
-          You have no phone set.<button onClick={handlePhone}>Set Phone</button>
+          You have no phone set.
+          <button onClick={handlePhone} className={classes.btn}>
+            Set Phone
+          </button>
         </h3>
       )}
     </div>
