@@ -46,6 +46,7 @@ To register, click on "Sign Up" in the top right corner. Fill in your name, emai
 
 To log in, click on "Sign In" in the top right corner. Fill in your user details or use Google Auth to sign in.
 
+```
 ### Explore Products
 
 To explore products, simply navigate to the navigation bar. There are two sections available:
@@ -57,6 +58,7 @@ In the navigation bar, locate the section labeled with product categories. Click
 #### Special Offers
 
 To explore special offers, navigate to the navbar menu and click on "Special Offers". All discounted products will be displayed there.
+```
 
 ### Showcase
 
