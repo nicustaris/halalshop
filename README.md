@@ -87,24 +87,25 @@ Users can select their preferred payment method, such as Credit Card or PayPal. 
 
 This Web Application features an integrated Content Management System (CMS) built from scratch to monitor and update the Hafiz Halal web application.
 
-The admin route is secured and is defined by a field in the database: `isAdmin: true`. This field can be found in the `usersdetails` collection, and by default, it is undefined for every user. To gain admin access to the CMS, simply access the Firestore database and set `isAdmin` to true for the desired user. Alternatively, an admin user is already created for this purpose. Please use the following details to access the admin route: User Email: admin@shop.com, Password: 123456. To access the admin route, open the web application followed by `/Admin`.
+The admin route is secured and is defined by a field in the database: `isAdmin: true`. This field can be found in the `usersdetails` collection, and by default, it is undefined for every user. To gain admin access to the CMS, simply access the Firestore database and set `isAdmin` to true for the desired user. Alternatively, an admin user is already created for this purpose. Please use the following details to get access to the admin route: User Email: admin@shop.com, Password: 123456. To access the admin route, open the web application followed by `/Admin`.
 
-### Admin Features
+### Admin Features Instruction
 
-- **Users Management**: Allows viewing, filtering, and searching for specific users, accessing user details, viewing, and removing users. Information such as order history, delivery addresses, and user join date is available.
+- **Users Management**: Allows viewing, and searching for specific user, accessing user details, viewing, and removing users. All user information can be found here.
 - **Products Management**: Enables adding new products by filling required inputs and clicking "Add Product". Admins can also edit existing products, change prices, or delete them.
 - **Promotion Products Management**: Similar to Products Management, admins can add new offers with the original price and discount percentage. For example, a product priced at £10 with a 50% discount will be displayed at £5 for users on the promotions page. Admins can also edit the discount for existing products or remove them.
-- **Category Management**: As the web app grows, admins can add new categories by providing a category name and choosing a background for the category.
+- **Category Management**: As the web app grows, admins can add new categories by providing a category name and choosing a background image for the category.
 - **Showcase**: Admins can delete inappropriate posts or any posts that go against Hafiz Halal Shop policy.
 - **Orders History**: This route displays all processed orders with details such as time, payment type, email, customer telephone, address, and a list of products ordered with quantities. Every detail about processed orders can be found here.
 
 ## Features
 
-User-friendly design for different device sizes.
-Secure sign-in/sign-up system using Google Auth and Firebase.
-Showcase section for users to share their prepared dishes.
-Integrated payment system with support for PayPal and credit cards.
-and many more...
+- User-friendly design for different device sizes.
+- Secure sign-in/sign-up system using Google Auth and Firebase.
+- Showcase section for users to share their prepared dishes.
+- Integrated payment system with support for PayPal and credit cards.
+- Integrated Content Management System (CMS)
+- And many more...
 
 ## Demo
 
